@@ -29,13 +29,17 @@ describe ('AddressBook', () => {
       const Sally = new Contact("Sally", "Smith", "222-2222");
       addBook2.assignId();
       addBook2.addContact(Sally);
-      expect(addBook2.findContact(2)).toEqual({firstName: "Sally", lastName: "Smith", phoneNumber: "222-2222", id: 2}); 
+      expect(addBook2.findContact(2)).toEqual({firstName: "Sally", lastName: "Smith", phoneNumber: "222-2222", id: 2});
+      expect(addBook2.findContact(3)).toEqual(false); 
+ 
+    });
+
+    test('should correctly delete the contact id number that is passed in', () => {
+      const addBook3 = new AddressBook();
+      const Becky = new Contact("Becky", "Jones", "333-3333");
+      addBook3.assignId();
+      addBook3.addContact(Becky)
+      expect(addBook3.deleteContact(2)).toEqual(true);
+      expect(addBook3.deleteContact(3)).toEqual(false);
     });
   });
-
-//   AddressBook.prototype.findContact = function(id) {
-//   if (this.contacts[id] != undefined) {
-//     return this.contacts[id];
-//   }
-//   return false;
-// }
